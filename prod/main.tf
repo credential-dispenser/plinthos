@@ -9,8 +9,11 @@ module "network" {
   source = "../modules/network"
 
   vpc_name = "${var.vpc_name}"
+  public_subnet_name = "${var.public_subnet_name}"
+  private_subnet_name = "${var.private_subnet_name}"
 
-#   cidr = "${var.cidr}"
+  public_subnet_cidr_ip = "10.1.0.0/20"
+  private_subnet_cidr_ip = "10.2.0.0/20"
+
 #   azs = "${var.azs}"
-#   public_subnets = "${var.public_subnets}"
 }

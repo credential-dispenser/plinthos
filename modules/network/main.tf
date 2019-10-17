@@ -3,7 +3,7 @@ terraform {
 }
 
 resource "google_compute_network" "vpc" {
-    name = var.vpc_name
+    name = var.gcp_network_name
     description = "A VPC for hosting the GKE app"
     auto_create_subnetworks = false
     routing_mode = "REGIONAL"

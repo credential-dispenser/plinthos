@@ -7,4 +7,6 @@ module "network" {
 
   public_subnet_cidr_ip = var.public_subnet_cidr_ip
   private_subnet_cidr_ip = var.private_subnet_cidr_ip
+
+  subnet_region = var.subnet_region
 }

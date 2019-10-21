@@ -1,5 +1,5 @@
-variable "gcp_network_name" {
-    description = "Name of the VPC to be used"
+variable "gke_name" {
+    description = "Name of the GKE Name"
 }
 
 variable "public_subnet_name" {
@@ -16,8 +16,4 @@ variable "public_subnet_cidr_ip" {
 
 variable "private_subnet_cidr_ip" {
     description = "CIDR IP for the private Subnet"
-}
-
-variable "subnet_region" {
-    description = "Region to deploy the subnets"
 }

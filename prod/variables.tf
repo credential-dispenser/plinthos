@@ -17,3 +17,19 @@ variable "public_subnet_cidr_ip" {
 variable "private_subnet_cidr_ip" {
     description = "CIDR IP for the private Subnet"
 }
+
+variable "region" {
+    description = "Region to deploy the subnets"
+}
+
+variable "credentials" {
+    description = "Local path for credentials"
+}
+
+variable "project" {
+    description = "Project name as set on GCP"
+}
+
+variable "zone" {
+    description = "Zone to deploy infra on"
+}

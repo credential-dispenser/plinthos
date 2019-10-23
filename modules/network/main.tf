@@ -1,7 +1,3 @@
-terraform {
-  required_version = ">= 0.12"
-}
-
 resource "google_compute_network" "vpc" {
     name = var.gcp_network_name
     description = "A VPC for hosting the GKE app"

@@ -18,6 +18,6 @@ variable "private_subnet_cidr_ip" {
     description = "CIDR IP for the private Subnet"
 }
 
-variable "subnet_region" {
+variable "region" {
     description = "Region to deploy the subnets"
 }

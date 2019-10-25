@@ -21,3 +21,11 @@ variable "private_subnet_cidr_ip" {
 variable "region" {
     description = "Region to deploy the subnets"
 }
+
+variable "dest_range" {
+    description = "Destination IP range"
+}
+
+variable "next_hop_gateway" {
+    description = "Next Hop Gateway"
+}

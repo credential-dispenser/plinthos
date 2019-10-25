@@ -57,3 +57,15 @@ variable "machine_type" {
 variable "office_ip" {
     description = "Office IP"
 }
+
+variable "gke_cluster_name" {
+    description = "Name of the GKE to be used"
+}
+
+variable "dest_range" {
+    description = "Destination IP range"
+}
+
+variable "next_hop_gateway" {
+    description = "Next Hop Gateway"
+}

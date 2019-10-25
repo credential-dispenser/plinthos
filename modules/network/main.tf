@@ -7,6 +7,8 @@ resource "google_compute_network" "vpc" {
 }
 
 resource "google_compute_subnetwork" "public_subnet" {
+    depends_on = [google_compute_network.vpc]
+
     name = var.public_subnet_name
     network = google_compute_network.vpc.self_link
     ip_cidr_range = var.public_subnet_cidr_ip
@@ -24,8 +26,20 @@ resource "google_compute_subnetwork" "public_subnet" {
 }
 
 resource "google_compute_subnetwork" "private_subnet" {
+    depends_on = [google_compute_network.vpc]
+
     name = var.private_subnet_name
     network = google_compute_network.vpc.self_link
     ip_cidr_range = var.private_subnet_cidr_ip
     region = var.region
+}
+
+resource "google_compute_route" "igw" {
+    depends_on = [google_compute_network.vpc]
+
+    name = "igw-route"
+    dest_range = var.dest_range
+    network = google_compute_network.vpc.name
+    priority = "1000"
+    next_hop_gateway = var.next_hop_gateway
 }

@@ -1,5 +1,5 @@
 resource "google_container_cluster" "gke" {
-  provider = "google-beta"
+  depends_on = [var.public_subnet_name]
 
   name = var.gke_cluster_name
 
@@ -10,15 +10,17 @@ resource "google_container_cluster" "gke" {
   remove_default_node_pool = true
   initial_node_count = 1
 
-  #Release channels provide a way to manage automatic upgrades for your cluster.
-  # release_channel = "REGULAR"
+  # #Release channels provide a way to manage automatic upgrades for your cluster.
+  # release_channel {
+  #   release_channel = "REGULAR"
+  # }
 
-  addons_config {
-    #Istio is a service mesh that provides monitoring, traffic control and security between the services running in Kubernetes Engine.
-    istio_config {
-      disabled = false
-    }
-  }
+  # addons_config {
+  #   #Istio is a service mesh that provides monitoring, traffic control and security between the services running in Kubernetes Engine.
+  #   istio_config {
+  #     disabled = false
+  #   }
+  # }
 
   #Setting it on the plinthos-vpc
   ip_allocation_policy {
@@ -43,7 +45,9 @@ resource "google_container_cluster" "gke" {
   }
 }
 
-resource "google_container_node_pool" "gke_preemptible_nodes" {
+resource "google_container_node_pool" "gke_node_pool" {
+  depends_on = [google_container_cluster.gke]
+
   name       = var.gke_node_pool_name_1
   cluster    = google_container_cluster.gke.name
   node_count = var.node_count

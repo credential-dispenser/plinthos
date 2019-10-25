@@ -11,12 +11,15 @@ module "network" {
   private_subnet_cidr_ip = var.private_subnet_cidr_ip
 
   region = var.region
+
+  dest_range = var.dest_range
+  next_hop_gateway = var.next_hop_gateway
 }
 
 module "gke" {
   source = "../modules/gke"
 
-  gke_cluster_name = "gke_cluster"
+  gke_cluster_name = var.gke_cluster_name
   gcp_network_name = var.gcp_network_name
   public_subnet_name = var.public_subnet_name
   cluster_secondary_range_name = module.network.cluster_secondary_range_name

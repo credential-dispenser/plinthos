@@ -1,12 +1,14 @@
-module "network" {
-  source = "../modules/network"
+module "vpc" {
+  source = "../modules/network/vpc"
 
   gcp_network_name = var.gcp_network_name
-  public_subnet_name = var.public_subnet_name
-  private_subnet_name = var.private_subnet_name
+}
 
-  public_subnet_cidr_ip = var.public_subnet_cidr_ip
-  private_subnet_cidr_ip = var.private_subnet_cidr_ip
+module "subnets" {
+  source = "../modules/network/subnet"
 
-  subnet_region = var.region
+  subnet_names = var.subnet_names
+  vpc_component = module.vpc.vpc_component
+  subnet_cidr_ips = var.subnet_cidr_ips
+  region = var.region
 }

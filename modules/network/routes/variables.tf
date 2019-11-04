@@ -18,6 +18,14 @@ variable "private_subnet_cidr_ip" {
     description = "CIDR IP for the private Subnet"
 }
 
-variable "subnet_region" {
+variable "region" {
     description = "Region to deploy the subnets"
+}
+
+variable "dest_range" {
+    description = "Destination IP range"
+}
+
+variable "next_hop_gateway" {
+    description = "Next Hop Gateway"
 }

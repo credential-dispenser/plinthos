@@ -1,23 +1,25 @@
+variable "gke_cluster_name" {
+    description = "Name of the GKE to be used"
+}
+
 variable "gcp_network_name" {
     description = "Name of the VPC to be used"
 }
 
-variable "subnet_names" {
+variable "public_subnet_name" {
     description = "Name of the Public Subnet to be used"
-    type = list(string)
 }
 
-variable "subnet_cidr_ips" {
-    description = "CIDR IP for the Public Subnet"
-    type = list(string)
+variable "cluster_secondary_range_name" {
+    description = "Name of the cluster secondary range"
+}
+
+variable "services_secondary_range_name" {
+    description = "Name of the cluster secondary range"
 }
 
 variable "region" {
     description = "Region to deploy the subnets"
-}
-
-variable "credentials" {
-    description = "Local path for credentials"
 }
 
 variable "project" {
@@ -50,16 +52,4 @@ variable "machine_type" {
 
 variable "office_ip" {
     description = "Office IP"
-}
-
-variable "gke_cluster_name" {
-    description = "Name of the GKE to be used"
-}
-
-variable "dest_range" {
-    description = "Destination IP range"
-}
-
-variable "next_hop_gateway" {
-    description = "Next Hop Gateway"
 }

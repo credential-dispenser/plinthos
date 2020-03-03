@@ -1,19 +1,38 @@
 resource "google_compute_subnetwork" "subnet" {
     depends_on = [var.vpc_component]
 
-    count = length(var.subnet_names)
+    for_each = var.subnets
 
-    name = var.subnet_names[count.index]
     network = var.vpc_component.self_link
-    ip_cidr_range = var.subnet_cidr_ips[count.index]
     region = var.region
 
-    # secondary_ip_range {
-    #     range_name = var.range_names[count.index].0
-    #     ip_cidr_range = var.ip_cidr_ranges[count.index].0
+    name = each.value[0]
+    ip_cidr_range = each.value[1]
+    
+    # dynamic "secondary_ip_range" {
+
+    #     for_each = [for s in var.subnets: {
+    #     count = length(var.subnet_names)
+
+    #         name = s.subnet_name
+    #         cidr_ip = s.cidr_ip
+    #     }]
+
+    #     content {
+    #         name = subnet.value.name
+    #         ip_cidr_range = subnet.value.cidr_ip
+    #     }
     # }
+    
+    
+    # range_name_1 = s.range_name[0]
     # secondary_ip_range {
-    #     range_name = var.range_names[count.index].1
-    #     ip_cidr_range = var.ip_cidr_ranges[count.index].1
+    #     range_name = s.range_name[0]
+    #     ip_cidr_range = s.cidr_ip[0]
+    # }
+
+    # secondary_ip_range {
+    #     range_name = s.range_name[1]
+    #     ip_cidr_range = s.cidr_ip[1]
     # }
 }

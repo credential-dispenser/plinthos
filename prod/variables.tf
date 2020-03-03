@@ -2,14 +2,8 @@ variable "gcp_network_name" {
     description = "Name of the VPC to be used"
 }
 
-variable "subnet_names" {
-    description = "Name of the Public Subnet to be used"
-    type = list(string)
-}
-
-variable "subnet_cidr_ips" {
-    description = "CIDR IP for the Public Subnet"
-    type = list(string)
+variable "subnets" {
+    description = "Subnet specs"
 }
 
 variable "region" {
